@@ -16,5 +16,12 @@ Atomic Pi PtP ip = `192.168.3.2`
 
 # Forwarding properties
 The atomic pi fowards data out of \
-port `55563` at ip `192.168.3.2` \
+port `55563` \
+ip `192.168.3.2` \
 ^ connect to the above settings in the applied engineering app
+
+# Timestamp server
+The atomic pi uses the following connection to forward timestamp data to the raspberry pi \
+ip = `192.168.3.2`\
+port = `7242`
+
