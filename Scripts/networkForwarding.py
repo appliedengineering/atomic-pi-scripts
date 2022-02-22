@@ -1,6 +1,6 @@
 # Telementry ZMQ Message Forwarding
 # Copyright (c) 2022 Applied Engineering
-import threading
+import concurrent.futures
 import logging
 import msgpack
 import zmq
@@ -36,7 +36,7 @@ pub.bind(address_to_bind)
 
 def handleForwarding():
 	try:
-		logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', level=log_level, datefmt="%H:%:M:%S")
+		logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', level=log_level, datefmt="%H:%M:%S")
 		logging.info("Listening for data from the raspberrypi which is located at %s", address_rpi)
 		while True:
 			try:
@@ -68,7 +68,7 @@ def handleForwarding():
 
 # setup a recv socket at port 5546#time_port = 5546
 time_socket = ctx.socket(zmq.REP)
-time_socket.bind("tcp://*:%s" % time_port)
+time_socket.bind("tcp://*:%s" % 55561)
 
 
 def handleTimestamp():
@@ -78,11 +78,18 @@ def handleTimestamp():
 		message = time_socket.recv()
 		# Forward the message
 		print("Got a message from a phone: ")
-		print(msgpack.unpackb(message)
+		print(msgpack.unpackb(message))
 
 
+def parallel_executor():
+	with concurrent.futures.ThreadPoolExecutor() as executor:
+		futures = []
+		futures.append(executor.submit(handleForwarding))
+		futures.append(executor.submit(handleTimestamp))
 
 # the if statement below is kind of like a main method
 if __name__ == '__main__':
-	Thread(target = handleForwarding).start()
-	Thread(target = handleTimestamp).start()
+	parallel_executor()
+#	Thread(target = handleForwarding).start()
+#	Thread(target = handleTimestamp).start()
+	#handleTimestamp()

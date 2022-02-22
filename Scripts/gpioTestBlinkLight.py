@@ -10,9 +10,9 @@ GPIO.setup(GPIO_1, GPIO.OUT)
 
 def runServo(timeTotal, clockwise=True):
 	startTime = time.time()
-	pwmInterval = 1.5/1000
+	pwmInterval = .0005
 	if not clockwise:
-		pwmInterval = 2/1000
+		pwmInterval = 0.0025
 	timeElapsed = 0
 	while(timeElapsed < timeTotal):
 		GPIO.output(GPIO_1, GPIO.HIGH)
