@@ -33,7 +33,7 @@ def timestamp_forwarding_device():
         context = zmq.Context(1)
         # Socket facing clients
         deviceend = context.socket(zmq.XREP)
-        deviceend.bind("tcp://*:7242")
+        deviceend.bind("tcp://*:31415")
 
         # Socket facing raspi (the "server")
         serverend = context.socket(zmq.XREQ)
