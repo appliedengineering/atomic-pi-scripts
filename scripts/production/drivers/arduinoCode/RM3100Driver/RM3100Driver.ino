@@ -98,7 +98,7 @@ void loop()
     // throw away extra bytes
     Serial.read();
     Serial.read();
-    
+
     Serial.print("Target Angle: ");
     Serial.println(readTargetAngle);
     targetAngle = readTargetAngle;
