@@ -48,6 +48,8 @@ def positioningThread(exit_event):
 
             targetHeading = alignmentc.getAngle(
                 groundC[0], groundC[1], boatC[0], boatC[1])
+            print("Target heading ", str(targetHeading))
+            servo.setServoAngle(targetHeading)
 
         except:
             traceback.print_exc()
