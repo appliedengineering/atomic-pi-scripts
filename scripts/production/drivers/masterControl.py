@@ -31,7 +31,7 @@ def positioningThread(exit_event):
     while not exit_event.is_set():
         try:
             groundC = gps.getCoordinates()  # lat, lon
-            networking.transmitPosition(boatC[0], boatC[1])
+            networking.transmitPosition(groundC[0], groundC[1])
 
             boatC = networking.receivePosition()  # lat, lon
 
