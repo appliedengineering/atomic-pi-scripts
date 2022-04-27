@@ -23,7 +23,7 @@ networking = networkingDriver.NetworkDriver("192.168.3.1")  # 192.168.3.1 for ra
 alignmentc = alignmentCalc.AlignmentCalc()
 
 # direction to point the nanostation at the boat
-targetHeading = 0.0  # shared var between two threads
+targetHeading = 0.0  
 
 
 def positioningThread(exit_event):
