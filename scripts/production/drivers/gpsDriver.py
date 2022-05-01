@@ -16,6 +16,14 @@ class GpsDriver:
 
     def getCoordinates(self):  # lat, lon
         raw = self.readCoord()
+        
+        timeoutC = 0
+        while timeoutC < 100 and not raw.startswith(b"$GPGGA"):
+            raw = self.readCoord()
+            timeoutC += 1
+            time.sleep(0.01)
+            
+        
         if (raw.startswith(b"$GPGGA")):
             try:
                 msg = pynmea2.parse(raw.decode("utf-8"))
