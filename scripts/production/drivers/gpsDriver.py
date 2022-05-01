@@ -6,13 +6,13 @@ import time
 class GpsDriver:
     # /dev/ttyS4, 115200 *very special indeed*
     def __init__(self, prt="/dev/ttyS4", baud=115200):
-        self.servoSerial = serial.Serial(
+        self.serialGPS = serial.Serial(
             port=prt,
             baudrate=baud,
         )
 
     def readCoord(self):
-        return self.__ser.readline()
+        return self.serialGPS.readline()
 
     def getCoordinates(self):  # lat, lon
         raw = self.readCoord()

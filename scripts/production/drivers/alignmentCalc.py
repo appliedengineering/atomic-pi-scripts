@@ -1,6 +1,6 @@
 import math
 
-class AlignmentCalc:
+class alignmentCalc:
    # movable-type.co.uk/scripts/latlong.html
    def getAngle(lat1, lon1, lat2, lon2):
       deltaLon = (lon2 - lon1)
