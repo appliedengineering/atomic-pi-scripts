@@ -94,7 +94,7 @@ void loop()
     {
         // read the incoming byte
         delay(10);
-        int readTargetAngle = Serial.parseInt();
+        int readTargetAngle = Serial.parseFloat();
         // throw away extra bytes
         Serial.read();
         Serial.read();
@@ -107,17 +107,17 @@ void loop()
     float readAngle = takeAverageMeasurement();
     Serial.println(readAngle);
 
-    headingDelta = heading - targetHeading
+    float headingDelta = readAngle - targetAngle;
 
     if (abs(headingDelta) > 180)
     {
         if (headingDelta < 0)
         {
-            headingDelta += 360
+            headingDelta += 360;
         }
         else
         {
-            headingDelta -= 360
+            headingDelta -= 360;
         }
     }
 
