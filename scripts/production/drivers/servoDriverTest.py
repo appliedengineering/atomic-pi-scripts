@@ -1,10 +1,9 @@
-from xml.etree.ElementTree import TreeBuilder
 import servoCompassControlDriver
 
 # other imports
 import time
 
-servoControl = servoCompassControlDriver.ServoCompassControl("COM4", 9600)
+servoControl = servoCompassControlDriver.ServoCompassControl("/dev/ttyUSB0", 9600)
 
 while True:
     servoControl.setServoAngle(100)
